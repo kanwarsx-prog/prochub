@@ -5,13 +5,13 @@ import { useState, useEffect } from 'react';
 import ChatPanel from '@/components/ChatPanel/ChatPanel';
 
 const NAV = [
-    { href: '/', label: 'Home', emoji: '⊡' },
-    { href: '/playbook', label: 'Playbook', emoji: '◫' },
-    { href: '/buying', label: 'Buying', emoji: '🛒' },
-    { href: '/learning', label: 'Learning', emoji: '🎓' },
-    { href: '/ideas', label: 'Ideas', emoji: '💡' },
-    { href: '/faq', label: 'Help & FAQ', emoji: '?' },
-    { href: '/templates', label: 'Templates', emoji: '☐' },
+    { href: '/', label: 'Home', emoji: '⊡', hoverColor: '#DBA11C' },
+    { href: '/playbook', label: 'Playbook', emoji: '◫', hoverColor: '#C80651' },
+    { href: '/buying', label: 'Buying', emoji: '🛒', hoverColor: '#10B981' },
+    { href: '/learning', label: 'Learning', emoji: '🎓', hoverColor: '#3B82F6' },
+    { href: '/ideas', label: 'Ideas', emoji: '💡', hoverColor: '#EAB308' },
+    { href: '/faq', label: 'Help & FAQ', emoji: '?', hoverColor: '#9333EA' },
+    { href: '/templates', label: 'Templates', emoji: '☐', hoverColor: '#F97316' },
 ];
 
 const BOOKMARKS = [
@@ -32,6 +32,15 @@ export default function Shell({ children }: { children: React.ReactNode }) {
 
     return (
         <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+            <style>{`
+                @keyframes ai-pulse {
+                    0%, 100% { border-color: #333; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+                    50% { border-color: #C80651; box-shadow: 0 0 16px rgba(200,6,81,0.4), inset 0 0 8px rgba(200,6,81,0.2); }
+                }
+                @keyframes ai-spin {
+                    100% { transform: rotate(360deg); }
+                }
+            `}</style>
             {/* GLOBAL TOP BANNER (Black & White) */}
             <header style={{
                 background: '#0a0a0a',
@@ -90,11 +99,11 @@ export default function Shell({ children }: { children: React.ReactNode }) {
 
                     {/* Nav items */}
                     <nav style={{ padding: '4px 10px', flex: 0 }}>
-                        {NAV.map(({ href, label }) => {
+                        {NAV.map(({ href, label, emoji, hoverColor }) => {
                             const active = href === '/' ? pathname === '/' : pathname.startsWith(href);
                             return (
                                 <Link key={href} href={href} style={{
-                                    display: 'flex', alignItems: 'center', gap: '0',
+                                    display: 'flex', alignItems: 'center', gap: '8px',
                                     padding: '8px 12px', borderRadius: '10px',
                                     marginBottom: '2px',
                                     fontSize: '13.5px', fontWeight: active ? 600 : 500,
@@ -104,22 +113,28 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                                     transition: 'all 0.15s ease',
                                     position: 'relative',
                                 }}
-                                    onMouseEnter={e => { if (!active) e.currentTarget.style.color = '#ffffff'; }}
-                                    onMouseLeave={e => { if (!active) e.currentTarget.style.color = '#a3a3a3'; }}>
+                                    onMouseEnter={e => {
+                                        if (!active) e.currentTarget.style.color = '#ffffff';
+                                        const icon = e.currentTarget.querySelector('.nav-icon') as HTMLElement;
+                                        if (icon) icon.style.color = hoverColor;
+                                    }}
+                                    onMouseLeave={e => {
+                                        if (!active) e.currentTarget.style.color = '#a3a3a3';
+                                        const icon = e.currentTarget.querySelector('.nav-icon') as HTMLElement;
+                                        if (icon) icon.style.color = active ? hoverColor : 'inherit';
+                                    }}>
                                     {active && (
                                         <span style={{
                                             position: 'absolute', left: 0, top: '25%', bottom: '25%',
-                                            width: '3px', borderRadius: '2px', background: '#ffffff',
+                                            width: '3px', borderRadius: '2px', background: hoverColor,
                                         }} />
                                     )}
-                                    <span style={{ paddingLeft: active ? '8px' : '0', transition: 'padding 0.15s' }}>{label}</span>
-                                    {active && (
-                                        <span style={{
-                                            marginLeft: 'auto', width: '6px', height: '6px',
-                                            borderRadius: '50%', background: '#ffffff',
-                                            boxShadow: '0 0 8px rgba(255,255,255,0.6)',
-                                        }} />
-                                    )}
+                                    <span className="nav-icon" style={{
+                                        fontSize: '15px',
+                                        transition: 'color 0.15s ease',
+                                        color: active ? hoverColor : 'inherit',
+                                    }}>{emoji}</span>
+                                    <span>{label}</span>
                                 </Link>
                             );
                         })}
@@ -172,10 +187,11 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                             color: '#fff', fontSize: '13px', fontWeight: 700,
                             boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
                             transition: 'all 0.2s ease',
+                            animation: 'ai-pulse 3s infinite',
                         }}
-                            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.02)'; e.currentTarget.style.background = '#2a2a2a'; e.currentTarget.style.borderColor = '#444'; }}
-                            onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.background = '#1a1a1a'; e.currentTarget.style.borderColor = '#333'; }}>
-                            <span style={{ fontSize: '14px' }}>✦</span>
+                            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.02)'; e.currentTarget.style.background = '#2a2a2a'; e.currentTarget.style.animation = 'none'; e.currentTarget.style.borderColor = '#C80651'; }}
+                            onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.background = '#1a1a1a'; e.currentTarget.style.animation = 'ai-pulse 3s infinite'; }}>
+                            <span style={{ fontSize: '14px', display: 'inline-block', animation: 'ai-spin 8s linear infinite' }}>✦</span>
                             Ask Playbook AI
                         </button>
                         <p style={{ textAlign: 'center', color: '#2a2838', fontSize: '10px', marginTop: '8px' }}>

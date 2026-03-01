@@ -27,15 +27,15 @@ function AppTile({ tool, index }: { tool: HubTool; index: number }) {
             }}
             onMouseEnter={e => {
                 const el = e.currentTarget;
-                el.style.transform = 'translateY(-3px)';
-                el.style.boxShadow = `0 12px 28px ${tool.color}15, 0 4px 12px rgba(0,0,0,0.04)`;
-                el.style.borderColor = `${tool.color}33`;
+                el.style.transform = 'translateY(-6px) scale(1.01)';
+                el.style.boxShadow = `0 20px 40px ${tool.color}25, 0 8px 16px rgba(0,0,0,0.06)`;
+                el.style.borderColor = `${tool.color}50`;
                 const bar = el.querySelector('.tile-accent-bar') as HTMLElement;
                 if (bar) bar.style.transform = 'scaleX(1)';
             }}
             onMouseLeave={e => {
                 const el = e.currentTarget;
-                el.style.transform = 'translateY(0)';
+                el.style.transform = 'translateY(0) scale(1)';
                 el.style.boxShadow = '0 4px 12px rgba(0,0,0,0.02)';
                 el.style.borderColor = 'rgba(0,0,0,0.06)';
                 const bar = el.querySelector('.tile-accent-bar') as HTMLElement;

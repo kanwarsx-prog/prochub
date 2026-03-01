@@ -21,7 +21,7 @@ export default function SearchBar({ width = '100%', maxWidth = '540px', placehol
     return (
         <form onSubmit={handleSearch} className="fade-up" style={{
             display: 'flex', gap: '8px', width, maxWidth,
-            background: 'rgba(255, 255, 255, 0.9)',
+            background: 'rgba(255, 255, 255, 0.4)',
             backdropFilter: 'blur(20px)',
             WebkitBackdropFilter: 'blur(20px)',
             border: `1px solid ${focused ? 'var(--brand)' : 'var(--border-strong)'}`,
