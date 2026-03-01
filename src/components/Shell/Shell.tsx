@@ -31,7 +31,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
     }, []);
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+        <div style={{ display: 'flex', height: '100vh', overflow: 'hidden' }}>
             <style>{`
                 @keyframes ai-pulse {
                     0%, 100% { border-color: #333; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
@@ -41,174 +41,172 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                     100% { transform: rotate(360deg); }
                 }
             `}</style>
-            {/* GLOBAL TOP BANNER (Black & White) */}
-            <header style={{
-                background: '#0a0a0a',
-                padding: '16px 24px',
-                borderBottom: '1px solid rgba(255,255,255,0.1)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                position: 'relative',
-                flexShrink: 0,
-                zIndex: 40,
+
+            {/* ── Sidebar ─── */}
+            <aside style={{
+                width: '220px', flexShrink: 0,
+                display: 'flex', flexDirection: 'column',
+                background: 'var(--sidebar-bg)',
+                borderRight: '1px solid var(--sidebar-border)',
+                height: '100%', overflowY: 'auto', overflowX: 'hidden',
             }}>
-                {/* Wordmark Center */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <span style={{
-                        fontWeight: 900, fontSize: '13px', letterSpacing: '0.16em', textTransform: 'uppercase',
-                        color: '#ffffff',
-                    }}>DIAGEO</span>
-                    <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '16px', fontWeight: 200 }}>|</span>
-                    <span style={{
-                        fontWeight: 500, fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase',
-                        color: 'rgba(255,255,255,0.7)',
-                    }}>Procurement Hub</span>
+                {/* Top Spacer */}
+                <div style={{ padding: '32px 0 16px' }} />
+
+                {/* Nav items */}
+                <nav style={{ padding: '4px 10px', flex: 0 }}>
+                    {NAV.map(({ href, label, emoji, hoverColor }) => {
+                        const active = href === '/' ? pathname === '/' : pathname.startsWith(href);
+                        return (
+                            <Link key={href} href={href} style={{
+                                display: 'flex', alignItems: 'center', gap: '8px',
+                                padding: '8px 12px', borderRadius: '10px',
+                                marginBottom: '2px',
+                                fontSize: '13.5px', fontWeight: active ? 600 : 500,
+                                color: active ? '#fff' : '#a3a3a3',
+                                background: active ? 'rgba(255,255,255,0.08)' : 'transparent',
+                                textDecoration: 'none',
+                                transition: 'all 0.15s ease',
+                                position: 'relative',
+                            }}
+                                onMouseEnter={e => {
+                                    if (!active) e.currentTarget.style.color = '#ffffff';
+                                    const icon = e.currentTarget.querySelector('.nav-icon') as HTMLElement;
+                                    if (icon) icon.style.color = hoverColor;
+                                }}
+                                onMouseLeave={e => {
+                                    if (!active) e.currentTarget.style.color = '#a3a3a3';
+                                    const icon = e.currentTarget.querySelector('.nav-icon') as HTMLElement;
+                                    if (icon) icon.style.color = active ? hoverColor : 'inherit';
+                                }}>
+                                {active && (
+                                    <span style={{
+                                        position: 'absolute', left: 0, top: '25%', bottom: '25%',
+                                        width: '3px', borderRadius: '2px', background: hoverColor,
+                                    }} />
+                                )}
+                                <span className="nav-icon" style={{
+                                    fontSize: '15px',
+                                    transition: 'color 0.15s ease',
+                                    color: active ? hoverColor : 'inherit',
+                                }}>{emoji}</span>
+                                <span>{label}</span>
+                            </Link>
+                        );
+                    })}
+                </nav>
+
+                {/* Divider */}
+                <div style={{ margin: '12px 20px', height: '1px', background: 'var(--sidebar-border)' }} />
+
+                {/* Pinned Items */}
+                <div style={{ padding: '0 20px', flex: 0 }}>
+                    <p style={{
+                        fontSize: '9.5px', fontWeight: 700, letterSpacing: '0.1em',
+                        textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '8px',
+                    }}>Pinned items</p>
+                    {BOOKMARKS.map(b => (
+                        <Link key={b.id} href={b.href} style={{
+                            display: 'flex', alignItems: 'center', gap: '8px',
+                            padding: '6px 0', fontSize: '13px', color: '#888888',
+                            textDecoration: 'none', transition: 'color 0.15s ease', fontWeight: 500,
+                        }}
+                            onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
+                            onMouseLeave={e => (e.currentTarget.style.color = '#888888')}>
+                            <span style={{ fontSize: '12px', opacity: 0.7 }}>📌</span>
+                            <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{b.label}</span>
+                        </Link>
+                    ))}
+                    <div style={{ height: '12px' }} />
+                    <a href="https://diageo.my.salesforce-sites.com/procurement/s/create-case"
+                        target="_blank" rel="noopener noreferrer" style={{
+                            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                            padding: '8px 12px', fontSize: '12.5px', color: '#888888',
+                            textDecoration: 'none', background: 'rgba(255,255,255,0.03)', borderRadius: '8px',
+                            transition: 'all 0.15s ease', fontWeight: 500, border: '1px solid rgba(255,255,255,0.05)'
+                        }}
+                        onMouseEnter={e => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.color = '#888888'; e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; }}>
+                        <span>Raise a Help Request</span>
+                        <span style={{ fontSize: '10px', opacity: 0.6 }}>↗</span>
+                    </a>
                 </div>
 
-                {/* Profile Button Right */}
-                <button style={{
-                    position: 'absolute', right: '48px',
-                    width: '36px', height: '36px', borderRadius: '50%',
-                    background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)',
-                    color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    cursor: 'pointer', transition: 'all 0.2s ease',
-                }}
-                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}>
-                    <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                        <circle cx="12" cy="7" r="4"></circle>
-                    </svg>
-                </button>
-            </header>
+                <div style={{ flex: 1 }} />
 
-            <div style={{ display: 'flex', flex: 1, overflow: 'hidden' }}>
+                {/* AI button */}
+                <div style={{ padding: '16px 14px 20px' }}>
+                    <button onClick={() => setChatOpen(true)} style={{
+                        width: '100%', padding: '11px 16px', borderRadius: '12px', border: '1px solid #333',
+                        cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px',
+                        background: '#1a1a1a',
+                        color: '#fff', fontSize: '13px', fontWeight: 700,
+                        boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
+                        transition: 'all 0.2s ease',
+                        animation: 'ai-pulse 3s infinite',
+                    }}
+                        onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.02)'; e.currentTarget.style.background = '#2a2a2a'; e.currentTarget.style.animation = 'none'; e.currentTarget.style.borderColor = '#C80651'; }}
+                        onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.background = '#1a1a1a'; e.currentTarget.style.animation = 'ai-pulse 3s infinite'; }}>
+                        <span style={{ fontSize: '14px', display: 'inline-block', animation: 'ai-spin 8s linear infinite' }}>✦</span>
+                        Ask Playbook AI
+                    </button>
+                    <p style={{ textAlign: 'center', color: '#2a2838', fontSize: '10px', marginTop: '8px' }}>
+                        Powered by your content
+                    </p>
+                </div>
+            </aside>
 
-                {/* ── Sidebar ─── */}
-                <aside style={{
-                    width: '220px', flexShrink: 0,
-                    display: 'flex', flexDirection: 'column',
-                    background: 'var(--sidebar-bg)',
-                    borderRight: '1px solid var(--sidebar-border)',
-                    height: '100%', overflow: 'hidden',
+            {/* ── Right Content Area (Header + Main) ─── */}
+            <div style={{
+                flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden',
+                background: 'url("/LiquidMagicPurple05_1_13.png") center top / cover no-repeat',
+                backgroundColor: 'var(--bg)'
+            }}>
+                {/* GLOBAL TOP BANNER (Transparent to show wave) */}
+                <header style={{
+                    background: 'transparent',
+                    padding: '16px 24px',
+                    borderBottom: '1px solid rgba(255,255,255,0.1)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'flex-start',
+                    position: 'relative',
+                    flexShrink: 0,
+                    zIndex: 40,
                 }}>
-
-                    {/* Top Spacer */}
-                    <div style={{ padding: '32px 0 16px' }} />
-
-                    {/* Nav items */}
-                    <nav style={{ padding: '4px 10px', flex: 0 }}>
-                        {NAV.map(({ href, label, emoji, hoverColor }) => {
-                            const active = href === '/' ? pathname === '/' : pathname.startsWith(href);
-                            return (
-                                <Link key={href} href={href} style={{
-                                    display: 'flex', alignItems: 'center', gap: '8px',
-                                    padding: '8px 12px', borderRadius: '10px',
-                                    marginBottom: '2px',
-                                    fontSize: '13.5px', fontWeight: active ? 600 : 500,
-                                    color: active ? '#fff' : '#a3a3a3',
-                                    background: active ? 'rgba(255,255,255,0.08)' : 'transparent',
-                                    textDecoration: 'none',
-                                    transition: 'all 0.15s ease',
-                                    position: 'relative',
-                                }}
-                                    onMouseEnter={e => {
-                                        if (!active) e.currentTarget.style.color = '#ffffff';
-                                        const icon = e.currentTarget.querySelector('.nav-icon') as HTMLElement;
-                                        if (icon) icon.style.color = hoverColor;
-                                    }}
-                                    onMouseLeave={e => {
-                                        if (!active) e.currentTarget.style.color = '#a3a3a3';
-                                        const icon = e.currentTarget.querySelector('.nav-icon') as HTMLElement;
-                                        if (icon) icon.style.color = active ? hoverColor : 'inherit';
-                                    }}>
-                                    {active && (
-                                        <span style={{
-                                            position: 'absolute', left: 0, top: '25%', bottom: '25%',
-                                            width: '3px', borderRadius: '2px', background: hoverColor,
-                                        }} />
-                                    )}
-                                    <span className="nav-icon" style={{
-                                        fontSize: '15px',
-                                        transition: 'color 0.15s ease',
-                                        color: active ? hoverColor : 'inherit',
-                                    }}>{emoji}</span>
-                                    <span>{label}</span>
-                                </Link>
-                            );
-                        })}
-                    </nav>
-
-                    {/* Divider */}
-                    <div style={{ margin: '12px 20px', height: '1px', background: 'var(--sidebar-border)' }} />
-
-                    {/* Pinned Items */}
-                    <div style={{ padding: '0 20px', flex: 0 }}>
-                        <p style={{
-                            fontSize: '9.5px', fontWeight: 700, letterSpacing: '0.1em',
-                            textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '8px',
-                        }}>Pinned items</p>
-                        {BOOKMARKS.map(b => (
-                            <Link key={b.id} href={b.href} style={{
-                                display: 'flex', alignItems: 'center', gap: '8px',
-                                padding: '6px 0', fontSize: '13px', color: '#888888',
-                                textDecoration: 'none', transition: 'color 0.15s ease', fontWeight: 500,
-                            }}
-                                onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
-                                onMouseLeave={e => (e.currentTarget.style.color = '#888888')}>
-                                <span style={{ fontSize: '12px', opacity: 0.7 }}>📌</span>
-                                <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{b.label}</span>
-                            </Link>
-                        ))}
-                        <div style={{ height: '12px' }} />
-                        <a href="https://diageo.my.salesforce-sites.com/procurement/s/create-case"
-                            target="_blank" rel="noopener noreferrer" style={{
-                                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                                padding: '8px 12px', fontSize: '12.5px', color: '#888888',
-                                textDecoration: 'none', background: 'rgba(255,255,255,0.03)', borderRadius: '8px',
-                                transition: 'all 0.15s ease', fontWeight: 500, border: '1px solid rgba(255,255,255,0.05)'
-                            }}
-                            onMouseEnter={e => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
-                            onMouseLeave={e => { e.currentTarget.style.color = '#888888'; e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; }}>
-                            <span>Raise a Help Request</span>
-                            <span style={{ fontSize: '10px', opacity: 0.6 }}>↗</span>
-                        </a>
+                    {/* Wordmark Center */}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                        <span style={{
+                            fontWeight: 900, fontSize: '13px', letterSpacing: '0.16em', textTransform: 'uppercase',
+                            color: '#ffffff',
+                        }}>DIAGEO</span>
+                        <span style={{ color: 'rgba(255,255,255,0.3)', fontSize: '16px', fontWeight: 200 }}>|</span>
+                        <span style={{
+                            fontWeight: 500, fontSize: '12px', letterSpacing: '0.08em', textTransform: 'uppercase',
+                            color: 'rgba(255,255,255,0.7)',
+                        }}>Procurement Hub</span>
                     </div>
 
-                    <div style={{ flex: 1 }} />
-
-                    {/* AI button */}
-                    <div style={{ padding: '16px 14px 20px' }}>
-                        <button onClick={() => setChatOpen(true)} style={{
-                            width: '100%', padding: '11px 16px', borderRadius: '12px', border: '1px solid #333',
-                            cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px',
-                            background: '#1a1a1a',
-                            color: '#fff', fontSize: '13px', fontWeight: 700,
-                            boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
-                            transition: 'all 0.2s ease',
-                            animation: 'ai-pulse 3s infinite',
-                        }}
-                            onMouseEnter={e => { e.currentTarget.style.transform = 'scale(1.02)'; e.currentTarget.style.background = '#2a2a2a'; e.currentTarget.style.animation = 'none'; e.currentTarget.style.borderColor = '#C80651'; }}
-                            onMouseLeave={e => { e.currentTarget.style.transform = ''; e.currentTarget.style.background = '#1a1a1a'; e.currentTarget.style.animation = 'ai-pulse 3s infinite'; }}>
-                            <span style={{ fontSize: '14px', display: 'inline-block', animation: 'ai-spin 8s linear infinite' }}>✦</span>
-                            Ask Playbook AI
-                        </button>
-                        <p style={{ textAlign: 'center', color: '#2a2838', fontSize: '10px', marginTop: '8px' }}>
-                            Powered by your content
-                        </p>
-                    </div>
-                </aside>
+                    {/* Profile Button Right */}
+                    <button style={{
+                        position: 'absolute', right: '48px',
+                        width: '36px', height: '36px', borderRadius: '50%',
+                        background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)',
+                        color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        cursor: 'pointer', transition: 'all 0.2s ease',
+                    }}
+                        onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.3)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.15)'; }}>
+                        <svg width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </button>
+                </header>
 
                 {/* ── Main content ─── */}
-                <main style={{
-                    flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden',
-                    background: 'url("/LiquidMagicPurple05_1_13.png") center top / 100% auto no-repeat',
-                    backgroundColor: 'var(--bg)'
-                }}>
-                    <div style={{ flex: 1, overflow: 'auto' }}>
-                        {children}
-                    </div>
+                <main style={{ flex: 1, overflow: 'auto' }}>
+                    {children}
                 </main>
             </div>
 
