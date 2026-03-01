@@ -203,7 +203,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                 {/* ── Main content ─── */}
                 <main style={{
                     flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden',
-                    background: 'url("/wave-bg.png") center top / 100% auto no-repeat',
+                    background: 'url("/LiquidMagicPurple05_1_13.png") center top / 100% auto no-repeat',
                     backgroundColor: 'var(--bg)'
                 }}>
                     <div style={{ flex: 1, overflow: 'auto' }}>
