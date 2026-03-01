@@ -23,6 +23,7 @@ const BOOKMARKS = [
 export default function Shell({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
     const [chatOpen, setChatOpen] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleOpenChat = () => setChatOpen(true);
@@ -42,14 +43,24 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                 }
             `}</style>
 
+            {/* Mobile Nav Overlay */}
+            {mobileMenuOpen && (
+                <div
+                    className="fixed inset-0 bg-black/50 z-40 md:hidden backdrop-blur-sm transition-opacity"
+                    onClick={() => setMobileMenuOpen(false)}
+                />
+            )}
+
             {/* ── Sidebar ─── */}
-            <aside style={{
-                width: '220px', flexShrink: 0,
-                display: 'flex', flexDirection: 'column',
-                background: 'var(--sidebar-bg)',
-                borderRight: '1px solid var(--sidebar-border)',
-                height: '100%', overflowY: 'auto', overflowX: 'hidden',
-            }}>
+            <aside
+                className={`fixed inset-y-0 left-0 z-50 transform transition-transform duration-300 md:relative md:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}
+                style={{
+                    width: '260px', flexShrink: 0,
+                    display: 'flex', flexDirection: 'column',
+                    background: 'var(--sidebar-bg)',
+                    borderRight: '1px solid var(--sidebar-border)',
+                    height: '100%', overflowY: 'auto', overflowX: 'hidden',
+                }}>
                 {/* Top Spacer */}
                 <div style={{ padding: '32px 0 16px' }} />
 
@@ -58,7 +69,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                     {NAV.map(({ href, label, emoji, hoverColor }) => {
                         const active = href === '/' ? pathname === '/' : pathname.startsWith(href);
                         return (
-                            <Link key={href} href={href} style={{
+                            <Link key={href} href={href} onClick={() => setMobileMenuOpen(false)} style={{
                                 display: 'flex', alignItems: 'center', gap: '8px',
                                 padding: '8px 12px', borderRadius: '10px',
                                 marginBottom: '2px',
@@ -106,7 +117,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                         textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '8px',
                     }}>Pinned items</p>
                     {BOOKMARKS.map(b => (
-                        <Link key={b.id} href={b.href} style={{
+                        <Link key={b.id} href={b.href} onClick={() => setMobileMenuOpen(false)} style={{
                             display: 'flex', alignItems: 'center', gap: '8px',
                             padding: '6px 0', fontSize: '13px', color: '#888888',
                             textDecoration: 'none', transition: 'color 0.15s ease', fontWeight: 500,
@@ -179,10 +190,17 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                     justifyContent: 'flex-start',
                     position: 'relative',
                     flexShrink: 0,
-                    zIndex: 40,
+                    zIndex: 30, // Lower than mobile menu overlay
                 }}>
+                    {/* Mobile Hamburger Button */}
+                    <button className="md:hidden mr-4 text-white" onClick={() => setMobileMenuOpen(true)}>
+                        <svg width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+
                     {/* Wordmark Center */}
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', flexWrap: 'wrap' }}>
                         <span style={{
                             fontWeight: 900, fontSize: '13px', letterSpacing: '0.16em', textTransform: 'uppercase',
                             color: '#ffffff',
