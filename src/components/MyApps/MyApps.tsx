@@ -275,7 +275,8 @@ export default function MyApps({ allTools }: { allTools: HubTool[] }) {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '20px' }}>
                 <h2 style={{
                     fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em',
-                    textTransform: 'uppercase', color: 'var(--text-4)',
+                    textTransform: 'uppercase', color: 'var(--text-1)',
+                    textShadow: '0 2px 12px rgba(255,255,255,0.8)'
                 }}>My Apps &amp; Reports</h2>
                 <button onClick={() => setPickerOpen(true)} style={{
                     display: 'flex', alignItems: 'center', gap: '6px',
