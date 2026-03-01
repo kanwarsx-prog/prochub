@@ -162,9 +162,9 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                 background: 'url("/LiquidMagicPurple05_1_13.png") center top / cover no-repeat',
                 backgroundColor: 'var(--bg)'
             }}>
-                {/* GLOBAL TOP BANNER (Transparent to show wave) */}
+                {/* GLOBAL TOP BANNER (Black) */}
                 <header style={{
-                    background: 'transparent',
+                    background: '#0a0a0a',
                     padding: '16px 24px',
                     borderBottom: '1px solid rgba(255,255,255,0.1)',
                     display: 'flex',
