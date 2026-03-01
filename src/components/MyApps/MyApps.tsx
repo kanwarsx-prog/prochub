@@ -14,8 +14,10 @@ function AppTile({ tool, index }: { tool: HubTool; index: number }) {
             className="app-tile"
             style={{
                 animationDelay: `${index * 0.05}s`,
-                background: '#ffffff',
-                border: '1px solid rgba(0,0,0,0.06)',
+                background: 'rgba(255, 255, 255, 0.85)',
+                backdropFilter: 'blur(12px)',
+                WebkitBackdropFilter: 'blur(12px)',
+                border: '1px solid rgba(255,255,255,0.4)',
                 borderRadius: '16px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -23,7 +25,7 @@ function AppTile({ tool, index }: { tool: HubTool; index: number }) {
                 overflow: 'hidden',
                 textDecoration: 'none',
                 transition: 'all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1)',
-                boxShadow: '0 4px 12px rgba(0,0,0,0.02)',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.04)',
             }}
             onMouseEnter={e => {
                 const el = e.currentTarget;
@@ -313,16 +315,16 @@ export default function MyApps({ allTools }: { allTools: HubTool[] }) {
                     {/* Add tile */}
                     <button onClick={() => setPickerOpen(true)} style={{
                         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                        gap: '8px', padding: '24px', borderRadius: '18px', border: '2px dashed var(--border)',
-                        background: 'transparent', cursor: 'pointer', minHeight: '160px', transition: 'all 0.15s ease',
+                        gap: '8px', padding: '24px', borderRadius: '18px', border: '2px dashed rgba(255,255,255,0.5)',
+                        background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)', cursor: 'pointer', minHeight: '160px', transition: 'all 0.15s ease',
                     }}
-                        onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--brand)'; e.currentTarget.style.background = 'rgba(200,6,81,0.02)'; }}
-                        onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.background = 'transparent'; }}>
+                        onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.8)'; e.currentTarget.style.background = 'rgba(255,255,255,0.9)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)'; e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}>
                         <div style={{
                             width: '36px', height: '36px', borderRadius: '10px',
-                            border: '2px dashed var(--border-strong)',
+                            border: '2px dashed var(--text-4)',
                             display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            fontSize: '20px', color: 'var(--text-4)',
+                            fontSize: '20px', color: 'var(--text-3)',
                         }}>+</div>
                         <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--text-4)' }}>Add app</span>
                     </button>

@@ -43,6 +43,7 @@ export default function Hero() {
                     letterSpacing: '-0.02em',
                     color: 'var(--text-1)',
                     marginBottom: '8px',
+                    textShadow: '0 4px 24px rgba(255,255,255,0.8)',
                 }}>
                     {greeting.replace('.', '')}<span style={{ color: 'var(--brand)' }}>.</span>
                 </h1>
