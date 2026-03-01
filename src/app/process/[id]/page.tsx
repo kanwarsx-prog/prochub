@@ -2,6 +2,7 @@ import { getProcess, getProcesses } from '@/lib/graph';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import PageWrapper from '@/components/PageWrapper/PageWrapper';
+import PinButton from '@/components/PinButton/PinButton';
 
 export const revalidate = 900;
 
@@ -86,9 +87,12 @@ export default async function ProcessPage({ params }: { params: Promise<{ id: st
                                 )}
                             </div>
 
-                            <h1 style={{ fontSize: '30px', fontWeight: 900, letterSpacing: '-0.03em', color: 'var(--text-1)', marginBottom: '10px', lineHeight: 1.1 }}>
-                                {process.title}
-                            </h1>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '10px' }}>
+                                <h1 style={{ fontSize: '30px', fontWeight: 900, letterSpacing: '-0.03em', color: 'var(--text-1)', lineHeight: 1.1 }}>
+                                    {process.title}
+                                </h1>
+                                <PinButton processId={id} processTitle={process.title} />
+                            </div>
                             <p style={{ fontSize: '14px', color: 'var(--text-2)', lineHeight: 1.6, maxWidth: '560px', marginBottom: '16px' }}>
                                 {process.summary}
                             </p>

@@ -45,10 +45,12 @@ export default function BuyingPage() {
                         flexShrink: 0, boxShadow: '0 4px 12px rgba(200,6,81,0.25)'
                     }}>⚡</div>
                     <div>
-                        <h2 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-1)', marginBottom: '8px' }}>Fairmarkit (Spot Buys & Tail Spend)</h2>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+                            <h2 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-1)' }}>Autonomous Sourcing with Fairmarkit</h2>
+                            <span style={{ fontSize: '10px', fontWeight: 700, background: 'var(--brand)', color: 'white', padding: '2px 6px', borderRadius: '4px', letterSpacing: '0.05em' }}>GEN AI POWERED</span>
+                        </div>
                         <p style={{ fontSize: '13.5px', color: 'var(--text-2)', lineHeight: 1.6, marginBottom: '16px' }}>
-                            Fairmarkit is the approved, mandatory tool for tail spend and spot buys that fall below your market's Step 1 threshold.
-                            It automates supplier selection and bidding for low-value, routine purchases, saving time and ensuring competitive pricing without a full RFx process.
+                            Fairmarkit is Diageo's intelligent sourcing platform for autonomously managing tail spend. It leverages Generative AI and machine learning to automatically execute the <strong>&quot;3-bid-and-a-buy&quot;</strong> process. The platform instantly analyzes purchase requests, recommends optimal suppliers, generates Request for Quotes (RFQs), and summarizes competitive responses without requiring manual intervention from the procurement team.
                         </p>
                         <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                             <a href="https://app.fairmarkit.com" target="_blank" rel="noopener noreferrer" style={{

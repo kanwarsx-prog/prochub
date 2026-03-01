@@ -14,11 +14,10 @@ const NAV = [
     { href: '/templates', label: 'Templates', emoji: '☐' },
 ];
 
-const QUICK_TOOLS = [
-    { id: 'coupa', label: 'Coupa', href: 'https://diageo.coupahost.com' },
-    { id: 'icertis', label: 'iCertis', href: 'https://diageo.icertis.com' },
-    { id: 'fairmarkit', label: 'Fairmarkit', href: 'https://app.fairmarkit.com' },
-    { id: 'sievo', label: 'Sievo', href: 'https://app.sievo.com' },
+const BOOKMARKS = [
+    { id: 'b1', label: 'Sourcing Step 1/2', href: '/process/sourcing-step-1-2' },
+    { id: 'b2', label: 'Competition & Antitrust', href: '/process/competition-antitrust' },
+    { id: 'b3', label: 'Category Strategy', href: '/process/category-strategy' },
 ];
 
 export default function Shell({ children }: { children: React.ReactNode }) {
@@ -43,24 +42,8 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                 position: 'sticky', top: 0, height: '100vh', overflow: 'hidden',
             }}>
 
-                {/* Brand mark */}
-                <div style={{ padding: '24px 20px 20px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                        <div style={{
-                            width: '30px', height: '30px', borderRadius: '9px',
-                            background: '#ffffff',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            boxShadow: '0 0 10px rgba(255,255,255,0.1)',
-                            flexShrink: 0,
-                        }}>
-                            <span style={{ color: '#000000', fontWeight: 900, fontSize: '13px', letterSpacing: '-0.03em' }}>P</span>
-                        </div>
-                        <div>
-                            <p style={{ color: '#fff', fontWeight: 700, fontSize: '13px', lineHeight: 1.2 }}>Procurement</p>
-                            <p style={{ color: '#4a4860', fontSize: '10px', marginTop: '1px' }}>Hub · Diageo</p>
-                        </div>
-                    </div>
-                </div>
+                {/* Top Spacer */}
+                <div style={{ padding: '32px 0 16px' }} />
 
                 {/* Nav items */}
                 <nav style={{ padding: '4px 10px', flex: 0 }}>
@@ -102,35 +85,35 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                 {/* Divider */}
                 <div style={{ margin: '12px 20px', height: '1px', background: 'var(--sidebar-border)' }} />
 
-                {/* Quick tools */}
+                {/* Pinned Items */}
                 <div style={{ padding: '0 20px', flex: 0 }}>
                     <p style={{
                         fontSize: '9.5px', fontWeight: 700, letterSpacing: '0.1em',
-                        textTransform: 'uppercase', color: '#2e2c3d', marginBottom: '8px',
-                    }}>Quick access</p>
-                    {QUICK_TOOLS.map(t => (
-                        <a key={t.id} href={t.href} target="_blank" rel="noopener noreferrer" style={{
-                            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                            padding: '6px 0', fontSize: '12.5px', color: '#888888',
+                        textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', marginBottom: '8px',
+                    }}>Pinned items</p>
+                    {BOOKMARKS.map(b => (
+                        <Link key={b.id} href={b.href} style={{
+                            display: 'flex', alignItems: 'center', gap: '8px',
+                            padding: '6px 0', fontSize: '13px', color: '#888888',
                             textDecoration: 'none', transition: 'color 0.15s ease', fontWeight: 500,
                         }}
                             onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
                             onMouseLeave={e => (e.currentTarget.style.color = '#888888')}>
-                            <span>{t.label}</span>
-                            <span style={{ fontSize: '10px', opacity: 0.6 }}>↗</span>
-                        </a>
+                            <span style={{ fontSize: '12px', opacity: 0.7 }}>📌</span>
+                            <span style={{ whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{b.label}</span>
+                        </Link>
                     ))}
+                    <div style={{ height: '12px' }} />
                     <a href="https://diageo.my.salesforce-sites.com/procurement/s/create-case"
                         target="_blank" rel="noopener noreferrer" style={{
                             display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-                            padding: '6px 0', fontSize: '12.5px', color: '#888888',
-                            textDecoration: 'none',
-                            borderTop: '1px solid var(--sidebar-border)', marginTop: '6px', paddingTop: '10px',
-                            transition: 'color 0.15s ease', fontWeight: 500,
+                            padding: '8px 12px', fontSize: '12.5px', color: '#888888',
+                            textDecoration: 'none', background: 'rgba(255,255,255,0.03)', borderRadius: '8px',
+                            transition: 'all 0.15s ease', fontWeight: 500, border: '1px solid rgba(255,255,255,0.05)'
                         }}
-                        onMouseEnter={e => (e.currentTarget.style.color = '#ffffff')}
-                        onMouseLeave={e => (e.currentTarget.style.color = '#888888')}>
-                        <span>Raise a request</span>
+                        onMouseEnter={e => { e.currentTarget.style.color = '#ffffff'; e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.color = '#888888'; e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; }}>
+                        <span>Raise a Help Request</span>
                         <span style={{ fontSize: '10px', opacity: 0.6 }}>↗</span>
                     </a>
                 </div>
