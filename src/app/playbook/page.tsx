@@ -50,10 +50,17 @@ export default async function PlaybookPage() {
 
             {/* Page heading */}
             <div style={{ marginBottom: '32px' }}>
-                <h1 style={{ fontSize: '28px', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--text-1)', marginBottom: '6px', textAlign: 'center' }}>
+                <h1 style={{
+                    fontSize: '28px', fontWeight: 800, letterSpacing: '-0.025em',
+                    color: 'var(--text-1)', marginBottom: '6px', textAlign: 'center',
+                    textShadow: '0 4px 24px rgba(255,255,255,0.8)'
+                }}>
                     Procurement Playbook
                 </h1>
-                <p style={{ fontSize: '14px', color: 'var(--text-3)', lineHeight: 1.5, textAlign: 'center' }}>
+                <p style={{
+                    fontSize: '14px', color: 'var(--text-1)', lineHeight: 1.5, textAlign: 'center',
+                    textShadow: '0 2px 12px rgba(255,255,255,0.6)', fontWeight: 500
+                }}>
                     Process guidance by framework area — sourcing, contracting, supplier management, and more.
                 </p>
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px', marginTop: '32px' }}>
@@ -64,7 +71,11 @@ export default async function PlaybookPage() {
 
             {/* Framework grid */}
             <section style={{ marginBottom: '40px' }}>
-                <h2 style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-4)', marginBottom: '16px' }}>
+                <h2 style={{
+                    fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em',
+                    textTransform: 'uppercase', color: 'var(--text-1)', marginBottom: '16px',
+                    textShadow: '0 2px 12px rgba(255,255,255,0.8)'
+                }}>
                     By framework area
                 </h2>
                 <FrameworkGrid frameworks={frameworks} />
@@ -72,7 +83,11 @@ export default async function PlaybookPage() {
 
             {/* Recently updated */}
             <section>
-                <h2 style={{ fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--text-4)', marginBottom: '16px' }}>
+                <h2 style={{
+                    fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em',
+                    textTransform: 'uppercase', color: 'var(--text-1)', marginBottom: '16px',
+                    textShadow: '0 2px 12px rgba(255,255,255,0.8)'
+                }}>
                     Recently updated
                 </h2>
                 <RecentList items={recent} />

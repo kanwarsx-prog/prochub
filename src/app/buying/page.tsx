@@ -16,10 +16,17 @@ export default function BuyingPage() {
 
             {/* Header */}
             <div style={{ marginBottom: '40px' }}>
-                <h1 style={{ fontSize: '28px', fontWeight: 800, letterSpacing: '-0.025em', color: 'var(--text-1)', marginBottom: '8px', textAlign: 'center' }}>
+                <h1 style={{
+                    fontSize: '28px', fontWeight: 800, letterSpacing: '-0.025em',
+                    color: 'var(--text-1)', marginBottom: '8px', textAlign: 'center',
+                    textShadow: '0 4px 24px rgba(255,255,255,0.8)'
+                }}>
                     Buying at Diageo
                 </h1>
-                <p style={{ fontSize: '14px', color: 'var(--text-3)', lineHeight: 1.6, textAlign: 'center', maxWidth: '600px', margin: '0 auto' }}>
+                <p style={{
+                    fontSize: '14px', color: 'var(--text-1)', lineHeight: 1.6, textAlign: 'center', maxWidth: '600px', margin: '0 auto',
+                    textShadow: '0 2px 12px rgba(255,255,255,0.6)', fontWeight: 500
+                }}>
                     Your guide to purchasing goods and services. Learn about sourcing routes, spot buys via Fairmarkit, and how to raise a PO.
                 </p>
                 <div style={{ marginTop: '32px', display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '12px' }}>
@@ -33,8 +40,11 @@ export default function BuyingPage() {
 
                 {/* Fairmarkit Card - Highlighted */}
                 <div style={{
-                    background: 'linear-gradient(135deg, rgba(200,6,81,0.03), rgba(109,40,145,0.08))',
-                    border: '1px solid var(--brand)',
+                    background: 'rgba(255, 255, 255, 0.85)',
+                    backdropFilter: 'blur(12px)',
+                    WebkitBackdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(255,255,255,0.4)',
+                    boxShadow: '0 8px 32px rgba(0,0,0,0.04)',
                     borderRadius: '16px', padding: '24px',
                     gridColumn: '1 / -1',
                     display: 'flex', gap: '24px', alignItems: 'flex-start'
@@ -62,7 +72,10 @@ export default function BuyingPage() {
                 </div>
 
                 {/* Sourcing Routes */}
-                <div style={{ background: 'var(--surface-0)', border: '1px solid var(--border)', borderRadius: '16px', padding: '24px' }}>
+                <div style={{
+                    background: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(255,255,255,0.4)', boxShadow: '0 8px 32px rgba(0,0,0,0.04)', borderRadius: '16px', padding: '24px'
+                }}>
                     <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#e0f2fe', color: '#0284c7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', marginBottom: '16px' }}>
                         ⚖️
                     </div>
@@ -74,7 +87,10 @@ export default function BuyingPage() {
                 </div>
 
                 {/* Procure to Pay */}
-                <div style={{ background: 'var(--surface-0)', border: '1px solid var(--border)', borderRadius: '16px', padding: '24px' }}>
+                <div style={{
+                    background: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(255,255,255,0.4)', boxShadow: '0 8px 32px rgba(0,0,0,0.04)', borderRadius: '16px', padding: '24px'
+                }}>
                     <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#fef3c7', color: '#d97706', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', marginBottom: '16px' }}>
                         🛒
                     </div>
@@ -86,7 +102,10 @@ export default function BuyingPage() {
                 </div>
 
                 {/* Contracts */}
-                <div style={{ background: 'var(--surface-0)', border: '1px solid var(--border)', borderRadius: '16px', padding: '24px' }}>
+                <div style={{
+                    background: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
+                    border: '1px solid rgba(255,255,255,0.4)', boxShadow: '0 8px 32px rgba(0,0,0,0.04)', borderRadius: '16px', padding: '24px'
+                }}>
                     <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#dcfce7', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', marginBottom: '16px' }}>
                         📄
                     </div>
