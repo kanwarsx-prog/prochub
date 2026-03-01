@@ -12,9 +12,10 @@ const QUICK_PATHS = [
 
 function getGreeting() {
     const h = new Date().getHours();
-    if (h < 12) return 'Good morning.';
-    if (h < 17) return 'Good afternoon.';
-    return 'Good evening.';
+    const name = "Alex"; // Placeholder for logged-in user
+    if (h < 12) return `Good morning, ${name}.`;
+    if (h < 17) return `Good afternoon, ${name}.`;
+    return `Good evening, ${name}.`;
 }
 
 export default function Hero() {
@@ -36,10 +37,10 @@ export default function Hero() {
             }}>
                 {/* Headline - Now Dark Text */}
                 <h1 className="fade-up" style={{
-                    fontSize: '36px',
+                    fontSize: '28px',
                     fontWeight: 800,
                     lineHeight: 1.1,
-                    letterSpacing: '-0.03em',
+                    letterSpacing: '-0.02em',
                     color: 'var(--text-1)',
                     marginBottom: '8px',
                 }}>
