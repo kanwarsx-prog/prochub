@@ -170,16 +170,8 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             {/* ── Right Content Area (Header + Main) ─── */}
             <div style={{
                 flex: 1, display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden',
-                background: 'url("/LiquidMagicPurple05_1_13.png") center top / cover no-repeat fixed',
-                backgroundColor: 'var(--bg)',
-                position: 'relative',
+                backgroundColor: '#f3f2f8',
             }}>
-                {/* Viewport Vignette (Fixed Edge Glow) - Adds immersive depth */}
-                <div style={{
-                    position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-                    pointerEvents: 'none', zIndex: 10,
-                    boxShadow: 'inset 0 0 200px rgba(15, 0, 30, 0.65)',
-                }} />
                 {/* GLOBAL TOP BANNER (Black) */}
                 <header style={{
                     background: '#0a0a0a',

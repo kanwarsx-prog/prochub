@@ -12,7 +12,7 @@ const QUICK_PATHS = [
 
 function getGreeting() {
     const h = new Date().getHours();
-    const name = "Alex"; // Placeholder for logged-in user
+    const name = "Kanwar"; // Placeholder for logged-in user
     if (h < 12) return `Good morning, ${name}.`;
     if (h < 17) return `Good afternoon, ${name}.`;
     return `Good evening, ${name}.`;
@@ -29,10 +29,6 @@ export default function Hero() {
             {/* LIGHT SECTION (White/Transparent over Wave) */}
             <div style={{
                 position: 'relative', zIndex: 1, width: '100%', padding: '48px 48px 32px', textAlign: 'center', display: 'flex', flexDirection: 'column', alignItems: 'center',
-                /* Removed black background so it appears light/transparent, or we can make it explicitly white if it's not transparent enough */
-                background: 'rgba(255,255,255,0.75)', /* Ensures text is readable over the wave or plain background */
-                WebkitBackdropFilter: 'blur(20px)',
-                backdropFilter: 'blur(20px)',
                 borderBottom: '1px solid var(--border)',
             }}>
                 {/* Headline - Now Dark Text */}
@@ -43,7 +39,6 @@ export default function Hero() {
                     letterSpacing: '-0.02em',
                     color: 'var(--text-1)',
                     marginBottom: '8px',
-                    textShadow: '0 4px 24px rgba(255,255,255,0.8)',
                 }}>
                     {greeting.replace('.', '')}<span style={{ color: 'var(--brand)' }}>.</span>
                 </h1>

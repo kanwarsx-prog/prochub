@@ -14,10 +14,8 @@ function AppTile({ tool, index }: { tool: HubTool; index: number }) {
             className="app-tile"
             style={{
                 animationDelay: `${index * 0.05}s`,
-                background: 'rgba(255, 255, 255, 0.85)',
-                backdropFilter: 'blur(12px)',
-                WebkitBackdropFilter: 'blur(12px)',
-                border: '1px solid rgba(255,255,255,0.4)',
+                background: 'var(--surface-0)',
+                border: '1px solid var(--border)',
                 borderRadius: '16px',
                 display: 'flex',
                 flexDirection: 'column',
@@ -276,7 +274,6 @@ export default function MyApps({ allTools }: { allTools: HubTool[] }) {
                 <h2 style={{
                     fontSize: '11px', fontWeight: 700, letterSpacing: '0.1em',
                     textTransform: 'uppercase', color: 'var(--text-1)',
-                    textShadow: '0 2px 12px rgba(255,255,255,0.8)'
                 }}>My Apps &amp; Reports</h2>
                 <button onClick={() => setPickerOpen(true)} style={{
                     display: 'flex', alignItems: 'center', gap: '6px',
@@ -316,11 +313,11 @@ export default function MyApps({ allTools }: { allTools: HubTool[] }) {
                     {/* Add tile */}
                     <button onClick={() => setPickerOpen(true)} style={{
                         display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-                        gap: '8px', padding: '24px', borderRadius: '18px', border: '2px dashed rgba(255,255,255,0.5)',
-                        background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(8px)', cursor: 'pointer', minHeight: '160px', transition: 'all 0.15s ease',
+                        gap: '8px', padding: '24px', borderRadius: '18px', border: '2px dashed var(--border-strong)',
+                        background: 'transparent', cursor: 'pointer', minHeight: '160px', transition: 'all 0.15s ease',
                     }}
-                        onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.8)'; e.currentTarget.style.background = 'rgba(255,255,255,0.9)'; }}
-                        onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.5)'; e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}>
+                        onMouseEnter={e => { e.currentTarget.style.borderColor = 'var(--text-3)'; e.currentTarget.style.background = 'var(--surface-0)'; }}
+                        onMouseLeave={e => { e.currentTarget.style.borderColor = 'var(--border-strong)'; e.currentTarget.style.background = 'transparent'; }}>
                         <div style={{
                             width: '36px', height: '36px', borderRadius: '10px',
                             border: '2px dashed var(--text-4)',

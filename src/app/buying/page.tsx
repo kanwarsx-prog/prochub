@@ -19,13 +19,11 @@ export default function BuyingPage() {
                 <h1 style={{
                     fontSize: '28px', fontWeight: 800, letterSpacing: '-0.025em',
                     color: 'var(--text-1)', marginBottom: '8px', textAlign: 'center',
-                    textShadow: '0 4px 24px rgba(255,255,255,0.8)'
                 }}>
                     Buying at Diageo
                 </h1>
                 <p style={{
-                    fontSize: '14px', color: 'var(--text-1)', lineHeight: 1.6, textAlign: 'center', maxWidth: '600px', margin: '0 auto',
-                    textShadow: '0 2px 12px rgba(255,255,255,0.6)', fontWeight: 500
+                    fontSize: '14px', color: 'var(--text-3)', lineHeight: 1.6, textAlign: 'center', maxWidth: '600px', margin: '0 auto',
                 }}>
                     Your guide to purchasing goods and services. Learn about sourcing routes, spot buys via Fairmarkit, and how to raise a PO.
                 </p>
@@ -40,10 +38,8 @@ export default function BuyingPage() {
 
                 {/* Fairmarkit Card - Highlighted */}
                 <div style={{
-                    background: 'rgba(255, 255, 255, 0.85)',
-                    backdropFilter: 'blur(12px)',
-                    WebkitBackdropFilter: 'blur(12px)',
-                    border: '1px solid rgba(255,255,255,0.4)',
+                    background: 'var(--surface-0)',
+                    border: '1px solid var(--border)',
                     boxShadow: '0 8px 32px rgba(0,0,0,0.04)',
                     borderRadius: '16px', padding: '24px',
                     gridColumn: '1 / -1',
@@ -73,8 +69,8 @@ export default function BuyingPage() {
 
                 {/* Sourcing Routes */}
                 <div style={{
-                    background: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-                    border: '1px solid rgba(255,255,255,0.4)', boxShadow: '0 8px 32px rgba(0,0,0,0.04)', borderRadius: '16px', padding: '24px'
+                    background: 'var(--surface-0)',
+                    border: '1px solid var(--border)', boxShadow: '0 8px 32px rgba(0,0,0,0.04)', borderRadius: '16px', padding: '24px'
                 }}>
                     <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#e0f2fe', color: '#0284c7', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', marginBottom: '16px' }}>
                         ⚖️
@@ -88,8 +84,8 @@ export default function BuyingPage() {
 
                 {/* Procure to Pay */}
                 <div style={{
-                    background: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-                    border: '1px solid rgba(255,255,255,0.4)', boxShadow: '0 8px 32px rgba(0,0,0,0.04)', borderRadius: '16px', padding: '24px'
+                    background: 'var(--surface-0)',
+                    border: '1px solid var(--border)', boxShadow: '0 8px 32px rgba(0,0,0,0.04)', borderRadius: '16px', padding: '24px'
                 }}>
                     <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#fef3c7', color: '#d97706', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', marginBottom: '16px' }}>
                         🛒
@@ -103,8 +99,8 @@ export default function BuyingPage() {
 
                 {/* Contracts */}
                 <div style={{
-                    background: 'rgba(255, 255, 255, 0.85)', backdropFilter: 'blur(12px)', WebkitBackdropFilter: 'blur(12px)',
-                    border: '1px solid rgba(255,255,255,0.4)', boxShadow: '0 8px 32px rgba(0,0,0,0.04)', borderRadius: '16px', padding: '24px'
+                    background: 'var(--surface-0)',
+                    border: '1px solid var(--border)', boxShadow: '0 8px 32px rgba(0,0,0,0.04)', borderRadius: '16px', padding: '24px'
                 }}>
                     <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#dcfce7', color: '#059669', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '18px', marginBottom: '16px' }}>
                         📄
